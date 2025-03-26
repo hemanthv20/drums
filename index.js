@@ -4,10 +4,12 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
         var instrument = this.innerHTML;
         makeSound(instrument);
+        buttonAnimation(instrument);
     });
 
     document.addEventListener("keydown", function(event) {
         makeSound(event.key);
+        buttonAnimation(event.key);
     })
 }
 
@@ -44,4 +46,12 @@ function makeSound(instrument) {
         default:
             break;
     }
+}
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function () {
+        activeButton.classList.remove("pressed");
+    })
 }
